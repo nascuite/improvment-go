@@ -7,8 +7,13 @@ type Person struct {
 }
 
 func changeName(person *Person) {
-	person.Name = "Alice"
+	//обновить имя
+	//person.Name = "Alice"
 
+	// обновить целиком структуру
+	*person = Person{
+		Name: "Alice",
+	}
 	// person начинает хранить новый адрес, уже на "Alice", но только в пределах changeName
 	// по старому адресу person изменений нет
 
