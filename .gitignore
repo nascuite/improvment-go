@@ -1,0 +1,14 @@
+/cmd/local
+/vendor
+/data
+/datax
+/proto
+/go
+.env
+.DS_store
+.idea
+profile*.*
+.coverage
+
+# binary
+/main
