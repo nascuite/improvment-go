@@ -48,6 +48,7 @@ func main() {
 	fmt.Println("started")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	// завершает WithTimeout, если predictableFunc отработала раньше таймаута
 	defer cancel()
 
 	fmt.Println(predictableFunc(ctx))
