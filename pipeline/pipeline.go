@@ -29,15 +29,19 @@ func getNums(len int) []int {
 	return result
 }
 
-var getNumsResult int
+// var getNumsResult int
+var fullNums []int
 var batchLen int32 = 100
 var ch = make(chan int32, 1)
 
 func getNum() int {
 	i := <-ch
-	if i%batchLen == 0 {
-		getNumsResult = getNums(1)[0]
+	j := i % batchLen
+	if j == 0 {
+		fullNums = getNums(int(batchLen))
 	}
+
+	getNumsResult := fullNums[j]
 	i++
 	ch <- i
 
