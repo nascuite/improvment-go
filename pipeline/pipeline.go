@@ -36,6 +36,7 @@ var ch = make(chan int32, 1)
 
 func getNum() int {
 	i := <-ch
+
 	j := i % batchLen
 	if j == 0 {
 		fullNums = getNums(int(batchLen))
