@@ -9,6 +9,9 @@ import (
 )
 
 func main() {
+	now := time.Now()
+	defer func() { fmt.Printf("time: %v", time.Since(now)) }()
+
 	b := NewBatch()
 	wg := sync.WaitGroup{}
 	for i := 0; i < b.maxLen; i++ {
@@ -32,8 +35,8 @@ type batch struct {
 
 func NewBatch() *batch {
 	return &batch{
-		maxLen:   10,
-		batchLen: 5,
+		maxLen:   10000,
+		batchLen: 100,
 		keyMap:   make(map[string]chan int),
 	}
 }
