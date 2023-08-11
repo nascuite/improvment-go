@@ -62,7 +62,6 @@ func (b *batch) processing(data map[string]chan int) {
 
 	for i, key := range keys {
 		data[key] <- results[i]
-		delete(b.keyMap, key)
 	}
 }
 
