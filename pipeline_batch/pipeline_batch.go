@@ -61,14 +61,21 @@ func (b *batch) processing(data map[string]chan int) {
 		keys = append(keys, key)
 	}
 
-	results := getNums(keys)
+	results, err := getNums(keys)
+	if err != nil {
+		for _, key := range keys {
+			close(data[key]) //закрыть канал
+		}
+	}
 
 	for i, key := range keys {
 		data[key] <- results[i]
+		close(data[key]) //закрыть канал
 	}
+
 }
 
-func getNums(keys []string) []int {
+func getNums(keys []string) ([]int, error) {
 	time.Sleep(time.Second)
 
 	var result []int
@@ -76,5 +83,5 @@ func getNums(keys []string) []int {
 		result = append(result, rand.Int())
 	}
 
-	return result
+	return result, nil
 }
