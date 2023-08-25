@@ -49,17 +49,17 @@ func sum(arr1, arr2 []int) []int {
 	result := make([]int, maxLen+1)
 	for i := 1; i <= maxLen+1; i++ {
 		arg1 := 0
+		if lenArr1 < i {
+			arg1 = 0
+		} else {
+			arg1 = arr1[lenArr1-i]
+		}
+
 		arg2 := 0
 		if lenArr2 < i {
 			arg2 = 0
 		} else {
 			arg2 = arr2[lenArr2-i]
-		}
-
-		if lenArr1 < i {
-			arg1 = 0
-		} else {
-			arg1 = arr1[lenArr1-i]
 		}
 
 		res := arg1 + arg2 + sdvg
