@@ -47,7 +47,6 @@ func sum(arr1, arr2 []int) []int {
 	}
 
 	result := make([]int, maxLen+1)
-	j := maxLen
 	for i := 1; i <= maxLen+1; i++ {
 		arg1 := 0
 		arg2 := 0
@@ -69,11 +68,10 @@ func sum(arr1, arr2 []int) []int {
 		if res > 9 {
 			ost := res - 10
 			sdvg = 1
-			result[j] = ost
+			result[maxLen-i+1] = ost
 		} else {
-			result[j] = res
+			result[maxLen-i+1] = res
 		}
-		j--
 	}
 
 	return result
