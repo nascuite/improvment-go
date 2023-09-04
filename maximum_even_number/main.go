@@ -10,15 +10,19 @@ import (
 func main() {
 	var max int
 	mu := sync.Mutex{}
+	wg := sync.WaitGroup{}
 	for i := 1000; i > 0; i-- {
+		wg.Add(1)
 		go func(i int) {
 			mu.Lock()
+			wg.Done()
 			if i%2 == 0 && i > max {
 				max = i
 			}
 			mu.Unlock()
 		}(i)
 	}
+	wg.Wait()
 
 	fmt.Printf("Maximum is %d", max)
 }
